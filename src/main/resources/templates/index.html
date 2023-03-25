@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/app.css" />
+    <title>SpringImageApp</title>
+</head>
+<body>
+<nav class="navbar fixed-top navbar-expand-lg navbar-light alert-info">
+    <a class="navbar-brand" href="/"><img src="/images/tic-tac-toe.png" width="30" height="30" alt="">
+        Tic Tac Toe Game</a>
+</nav>
+<div class="formcontainer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+
+            </div>
+            <div class="col-sm-6">
+                <div class="card" >
+                    <div class="card-body">
+                        <h5 class="card-title">Game Settings</h5>
+                        <form class="form mt-4" th:action="@{/option}"  th:object="${gameSelection}" method="post">
+                            <div class="form-group">
+                                <label for="boardDiemnsion">Board Dimension</label>
+                                <input type="number" class="form-control" id="boardDiemnsion" aria-describedby="emailHelp" th:field="*{dimension}" placeholder="dimension">
+                                <small id="emailHelp" class="form-text text-muted">Minimum value is 3</small>
+                                <div class="alert alert-warning" th:if="${#fields.hasErrors('dimension')}" th:errors="*{dimension}"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="gameType">Opponent Type</label>
+                                <div class="form-check">
+                                    <input th:field="*{gameType}" id="gameType" class="form-check-input" type="radio" name="exampleRadios" value="COMPUTER">
+                                    <label class="form-check-label" for="gameType">
+                                        Computer
+                                    </label>
+                                    <small id="gameTypehelp" class="form-text text-muted">You can play your self with AI</small>
+                                </div>
+                                <div class="form-check" >
+                                    <input th:field="*{gameType}" id="gameType2" class="form-check-input" type="radio" name="exampleRadios" value="HUMAN">
+                                    <label class="form-check-label" for="gameType">
+                                        Human
+                                    </label>
+                                    <small id="gameType2help" class="form-text text-muted">You can play with other Player</small>
+                                </div>
+
+                                <div class="alert alert-warning" th:if="${#fields.hasErrors('gameType')}" th:errors="*{gameType}"></div>
+                            </div>
+
+                        <button type="submit" class="btn alert-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
